@@ -21,9 +21,13 @@ export const handler = async (
         context.functionName
     )
 
+    event.path
     const queries = JSON.stringify(event.queryStringParameters)
+    const path = JSON.stringify(event.path)
+    const httpMethod = JSON.stringify(event.httpMethod)
+    console.log('QUERIES: ' + queries.toString())
     return {
         statusCode: 200,
-        body: `Queries: ${queries}`
+        body: `Method: ${httpMethod}` + ` Path: ${path}` + ` Queries: ${queries}`
     }
 }

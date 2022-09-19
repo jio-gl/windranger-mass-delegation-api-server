@@ -11,6 +11,8 @@ describe('Lambda', () => {
             ['first']: 'one',
             ['second']: 'two'
         })
+        when(event.path).thenReturn('/')
+        when(event.httpMethod).thenReturn('GET')
 
         const context = mock<Context>()
         when(context.awsRequestId).thenReturn('199')
@@ -20,7 +22,7 @@ describe('Lambda', () => {
 
         expect(result).deep.equals({
             statusCode: 200,
-            body: 'Queries: {"first":"one","second":"two"}'
+            body: 'Method: "GET" Path: "/" Queries: {"first":"one","second":"two"}'
         })
     })
 })
